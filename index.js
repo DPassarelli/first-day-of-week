@@ -43,6 +43,10 @@ function getFirstDayOfWeek (dt, basis) {
   basis = basis || 'monday'
 
   if (basis.toLowerCase() === 'sunday') {
+    if (dt.weekday === 7) {
+      return dt
+    }
+
     return dt.startOf('week').minus({ day: 1 })
   }
 

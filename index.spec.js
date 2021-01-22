@@ -102,6 +102,13 @@ describe('the "first-day-of-week" module', () => {
 
             expect(actual).to.equal(expected)
           })
+
+          it('must refer to the same date if a Sunday is passed in', () => {
+            const expected = DateTime.fromJSDate(sundayOfCurrentWeek).toLocaleString()
+            const actual = T(factory(sundayOfCurrentWeek.getTime()), 'sunday').toLocaleString()
+
+            expect(actual).to.equal(expected)
+          })
         })
       }
 
