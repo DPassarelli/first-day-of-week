@@ -40,7 +40,7 @@ describe('the "first-day-of-week" module', () => {
       })
     })
 
-    context('consistency', () => {
+    context('side effects', () => {
       it('must not mutate the value passed in', () => {
         const dt = new Date(2021, 0, 1) // Jan 1, 2021
         const before = dt.toString()
