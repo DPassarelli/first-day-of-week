@@ -40,6 +40,19 @@ describe('the "first-day-of-week" module', () => {
       })
     })
 
+    context('consistency', () => {
+      it('must not mutate the value passed in', () => {
+        const dt = new Date(2021, 0, 1) // Jan 1, 2021
+        const before = dt.toString()
+
+        T(dt)
+
+        const after = dt.toString()
+
+        expect(after).to.equal(before)
+      })
+    })
+
     context('expected output', () => {
       /**
        * The calculated date for the most recent Monday on or before the current

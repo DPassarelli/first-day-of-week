@@ -32,6 +32,7 @@ function getFirstDayOfWeek (dt, basis) {
    * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
    */
 
+  // convert native Date to DateTime instance
   if (dt instanceof Date) {
     dt = DateTime.fromJSDate(dt)
   }
@@ -40,6 +41,7 @@ function getFirstDayOfWeek (dt, basis) {
     throw new Error('The first parameter is required and must be a JavaScript Date object, or an instance of luxon\'s DateTime class.')
   }
 
+  // provide a default value, otherwise `toLowerCase()` may throw an error
   basis = basis || 'monday'
 
   if (basis.toLowerCase() === 'sunday') {
