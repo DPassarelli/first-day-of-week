@@ -1,6 +1,6 @@
 const { DateTime } = require('luxon')
 
-function firstDayOfWeek (dt) {
+function getFirstDayOfWeek (dt, basedOn) {
   /*
     ISC License
 
@@ -19,15 +19,25 @@ function firstDayOfWeek (dt) {
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
    */
 
-  if (dt == null || !(dt instanceof Date)) {
-    throw new Error('The first parameter is required and must be a JavaScript Date object, or an instance of Luxon\'s DateTime class.')
+  if (dt == null) {
+    throw new Error('The first parameter is required and must be a JavaScript Date object, or an instance of luxon\'s DateTime class.')
+  }
+
+  if (!(dt instanceof Date) && !DateTime.isDateTime(dt)) {
+    throw new Error('The first parameter is required and must be a JavaScript Date object, or an instance of luxon\'s DateTime class.')
   }
 
   if (dt instanceof Date) {
     dt = DateTime.fromJSDate(dt)
   }
 
+  basedOn = basedOn || 'monday'
+
+  if (basedOn.toLowerCase() === 'sunday') {
+    return dt.startOf('week').minus({ day: 1 })
+  }
+
   return dt.startOf('week')
 }
 
-module.exports = firstDayOfWeek
+module.exports = getFirstDayOfWeek
