@@ -43,13 +43,16 @@ function getFirstDayOfWeek (dt, basis) {
   basis = basis || 'monday'
 
   if (basis.toLowerCase() === 'sunday') {
+    // https://moment.github.io/luxon/docs/class/src/datetime.js~DateTime.html#instance-get-weekday
     if (dt.weekday === 7) {
       return dt
     }
 
+    // luxon always considers Monday as first day of week
     return dt.startOf('week').minus({ day: 1 })
   }
 
+  // luxon always considers Monday as first day of week
   return dt.startOf('week')
 }
 
