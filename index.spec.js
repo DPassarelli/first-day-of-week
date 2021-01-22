@@ -45,6 +45,24 @@ describe('the "first-day-of-week" module', () => {
         const actual = T(new Date())
         expect(actual).to.be.instanceof(DateTime)
       })
+
+      context('without specifying which weekday to start on', () => {
+        it('must refer to the latest Monday on or before the given date', () => {
+          let day = new Date()
+
+          while (day.getDay() !== 1) { // Sunday - Saturday : 0 - 6
+            day = new Date(day.getFullYear(), day.getMonth(), day.getDate() - 1)
+          }
+
+          const a = DateTime.fromJSDate(day)
+          const b = T(new Date())
+
+          const expected = true
+          const actual = b.hasSame(a, 'day')
+
+          expect(actual).to.equal(expected)
+        })
+      })
     })
   })
 })

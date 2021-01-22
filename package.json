@@ -6,8 +6,12 @@
   "scripts": {
     "test": "clear && standard && mocha *.spec.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DPassarelli/first-day-of-week.git"
+  },
   "keywords": [],
-  "author": "",
+  "author": "David Passarelli <dpassarelli@camelotcg.com>",
   "license": "ISC",
   "dependencies": {
     "luxon": "^1.25.0"

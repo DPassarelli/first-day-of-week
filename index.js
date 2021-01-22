@@ -23,7 +23,11 @@ function firstDayOfWeek (dt) {
     throw new Error('The first parameter is required and must be a JavaScript Date object, or an instance of Luxon\'s DateTime class.')
   }
 
-  return DateTime.local()
+  if (dt instanceof Date) {
+    dt = DateTime.fromJSDate(dt)
+  }
+
+  return dt.startOf('week')
 }
 
 module.exports = firstDayOfWeek
